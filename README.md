@@ -1,40 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# OpenAI Speech Transcriber
 
-## Getting Started
+Este repositório contém uma aplicação web desenvolvida para transcrever áudio utilizando a API OpenAI Whisper. O sistema foi construído com o framework **Next.js**, seguindo as boas práticas de organização de código, como **MVC (Model-View-Controller)**, **Atomic Design** e outros.
 
-First, run the development server:
+## Tecnologias Utilizadas
+
+- **Next.js** (versão 15.3.1): Framework para React que permite renderização do lado do servidor e criação de APIs.
+- **React.js** (versão 19.0.0): Biblioteca para construção de interfaces de usuário.
+- **React Toastify** (versão 11.0.5): Biblioteca para exibição de notificações na aplicação.
+- **TypeScript** (versão 5): Superset de JavaScript para tipagem estática e melhor desenvolvimento.
+- **Busboy** (versão 1.6.0): Middleware para parsing de arquivos.
+- **OpenAI Whisper**: API utilizada para transcrição de áudio.
+
+## Instalação e Execução
+
+### Pré-requisitos
+
+Certifique-se de ter as seguintes ferramentas instaladas:
+
+- **Node.js** (versão descrita no arquivo `.nvmrc`)
+- **Yarn** ou **npm**
+
+### Passos para Instalação
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/[seu-usuario]/openai-speech-transcriber.git
+```
+
+2. Navegue até o diretório do projeto:
+
+```bash
+cd openai-speech-transcriber
+```
+
+3. Instale as dependências:
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+4. Para rodar a aplicação em desenvolvimento:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação estará disponível em http://localhost:3000.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Estrutura do Projeto
+A estrutura do projeto segue as melhores práticas de organização para facilitar o desenvolvimento e a manutenção. Ela utiliza o padrão MVC e a abordagem Atomic Design para componentes de UI.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+/openai-speech-transcriber
+│
+├── /src
+│   ├── /components          # Componentes reutilizáveis baseados no Atomic Design
+│   │   ├── /audio-player    # Componente de reprodutor de áudio
+│   │   ├── /process-button  # Componente de botão de processo
+│   │   ├── /record-button   # Componente de botão de gravação
+│   │   └── /transcription   # Componente para exibir transcrição
+│   ├── /controllers         # Lógica de controle de áudio e transcrição
+│   ├── /hooks               # Hooks personalizados, como useRecorder
+│   ├── /pages               # Páginas do Next.js
+│   │   ├── /api             # Endpoints da API, como /transcribe
+│   │   ├── _app.tsx         # Configuração global do Next.js
+│   │   └── index.tsx        # Página principal
+│   ├── /services            # Serviços de integração com APIs externas
+│   │   └── openai-whisper.service.ts  # Serviço para interagir com OpenAI Whisper
+│   ├── /shared              # Arquivos de estilo e configurações globais
+│   │   └── globals.css      # Estilos globais da aplicação
+│
+├── .env                     # Variáveis de ambiente
+├── package.json             # Dependências e scripts do projeto
+├── tsconfig.json            # Configuração do TypeScript
+└── README.md                # Este arquivo
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## Testes
+Atualmente, o projeto não contém testes automatizados, mas as funções principais, como a transcrição de áudio, foram implementadas de forma a facilitar a adição de testes no futuro.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy
 
-## Learn More
+A aplicação está disponível online via [Vercel](https://vercel.com).  
+Você pode visualizar o projeto funcionando neste ambiente de preview:  
+🔗 [https://openai-speech-transcriber.vercel.app](https://openai-speech-transcriber.vercel.app)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
