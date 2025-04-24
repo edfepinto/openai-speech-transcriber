@@ -42,7 +42,14 @@ npm install
 yarn install
 ```
 
-4. Para rodar a aplicação em desenvolvimento:
+4. Configuração das variáveis de ambiente
+Crie um arquivo .env com base no .env.example e em seguida preencha ele com a chave de API do OpenAI: 
+
+```bash
+cp .env.example .env
+```
+
+5. Para rodar a aplicação em desenvolvimento:
 
 ```bash
 npm run dev
@@ -76,6 +83,8 @@ A estrutura do projeto segue as melhores práticas de organização para facilit
 │   │   └── globals.css      # Estilos globais da aplicação
 │
 ├── .env                     # Variáveis de ambiente
+├── .env.example             # Template do arquivo .env que deve ser preenchido
+├── .nvmrc                   # Versão do Node utilizada no projeto
 ├── package.json             # Dependências e scripts do projeto
 ├── tsconfig.json            # Configuração do TypeScript
 └── README.md                # Este arquivo
