@@ -7,7 +7,10 @@ export const config = {
   },
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método não permitido" });
   }
@@ -16,9 +19,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const audioBuffer = await parseAudioUpload(req);
     const transcription = await transcribeAudio(audioBuffer);
     return res.status(200).json({ text: transcription });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Erro ao processar transcrição:", error);
-    return res.status(500).json({ error: error.message || "Erro interno no servidor" });
+
+    const message =
+      error instanceof Error ? error.message : "Erro interno no servidor";
+
+    return res.status(500).json({ error: message });
   }
 }
 
@@ -52,13 +59,16 @@ const transcribeAudio = async (audioBuffer: Buffer): Promise<string> => {
   formData.append("file", audioFile);
   formData.append("model", "whisper-1");
 
-  const response = await fetch("https://api.openai.com/v1/audio/transcriptions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.WHISPER_OPENAI_API_KEY}`,
+  const response = await fetch(
+    "https://api.openai.com/v1/audio/transcriptions",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.WHISPER_OPENAI_API_KEY}`,
+      },
+      body: formData,
     },
-    body: formData,
-  });
+  );
 
   const result = await response.json();
 
@@ -68,4 +78,3 @@ const transcribeAudio = async (audioBuffer: Buffer): Promise<string> => {
 
   return result.text;
 };
-

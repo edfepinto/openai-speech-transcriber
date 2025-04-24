@@ -1,6 +1,6 @@
 # OpenAI Speech Transcriber
 
-Este repositório contém uma aplicação web desenvolvida para transcrever áudio utilizando a API OpenAI Whisper. O sistema foi construído com o framework **Next.js**, seguindo as boas práticas de organização de código, como **MVC (Model-View-Controller)**, **Atomic Design** e outros.
+Este repositório contém uma aplicação web desenvolvida para transcrever áudio utilizando a API OpenAI Whisper. O sistema foi construído com o framework **Next.js**, seguindo as boas práticas de organização de código, como **MVC (Model-View-Controller)**, **Atomic Design**, **tratamento de erros** e outros.
 
 ## Tecnologias Utilizadas
 
@@ -25,7 +25,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/[seu-usuario]/openai-speech-transcriber.git
+git clone https://github.com/edfepinto/openai-speech-transcriber.git
 ```
 
 2. Navegue até o diretório do projeto:

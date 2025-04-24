@@ -51,8 +51,10 @@ export const useAudioController = () => {
       setTranscription(text);
       toast.success("Transcrição concluída!");
       setError(null);
-    } catch (err: any) {
-      setError(err.message || "Erro na transcrição.");
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Erro na transcrição.";
+      setError(errorMessage);
       toast.error("Erro na transcrição.");
       console.error(err);
     }

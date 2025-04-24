@@ -27,7 +27,11 @@ export function useRecorder() {
   };
 
   const toggleRecording = async () => {
-    isRecording ? stopRecording() : await startRecording();
+    if (isRecording) {
+      stopRecording();
+    } else {
+      await startRecording();
+    }
   };
 
   return {
@@ -36,4 +40,3 @@ export function useRecorder() {
     toggleRecording,
   };
 }
-
